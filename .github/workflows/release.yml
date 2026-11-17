@@ -1,10 +1,10 @@
 name: Release APK
 
 on:
-  push:
-    tags: ["v*"]
+  # Solo al publicar un Release (web/app de GitHub o `gh release create`).
+  # No se escucha también el push del tag porque crear el Release crea el tag y corría dos veces.
   release:
-    types: [published] # crear el Release desde la web/app de GitHub también lo dispara
+    types: [published]
   workflow_dispatch:
 
 permissions:

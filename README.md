@@ -10,11 +10,10 @@ Control remoto IR sin anuncios para tele AOC (probado contra LC42H163), usando e
 
 El APK listo está en [Releases](https://github.com/cHeRaZ-edu/control-inflarojo/releases/latest).
 
-Para sacar una versión nueva:
+Para sacar una versión nueva, crea un Release en GitHub (Releases → Create a new release → tag nuevo `vX.Y` sobre `main` → Publish), o:
 
 ```bash
-git tag v1.1
-git push origin v1.1
+gh release create v1.2 --target main --title v1.2 --notes ""
 ```
 
 GitHub Actions lo compila (`.github/workflows/release.yml`) y lo publica. El APK se firma con `app/control.keystore`, que está en el repo a propósito: así cada versión se instala encima de la anterior.
