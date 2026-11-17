@@ -1,0 +1,47 @@
+name: Release APK
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Compilar APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon
+          cp app/build/outputs/apk/release/app-release.apk control-inflarojo-${{ github.ref_name }}.apk
+
+      - name: Guardar como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: control-inflarojo-apk
+          path: control-inflarojo-*.apk
+
+      - name: Publicar en Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: control-inflarojo-*.apk
+          body: |
+            Control remoto IR sin anuncios para tele AOC.
+
+            **Instalar:** descarga el `.apk` en el celular (POCO X3 Pro u otro con emisor IR) y ábrelo.
+            Si pide permiso, activa "Instalar apps desconocidas" para el navegador o el gestor de archivos.
+
+            **Escáner:** mantén presionado el título "Control TV" para buscar los códigos que faltan (Vol ±, Canal ±, OK).
