@@ -56,10 +56,14 @@ NEC, address `0x00`, subaddress `0xBD` (189).
 | Modo de imagen | 3 (encontrado con el escáner, no viene en IRDB) |
 | HDMI 1 directo | 6 (encontrado con el escáner) |
 | Input (menú de entradas) | 8 (encontrado con el escáner) |
+| Vol + / Vol − | 12 / 16 (mismas que ▶ / ◀) |
+| Canal + / Canal − | 24 / 28 (mismas que ▲ / ▼) |
 | 1–9 | 21, 22, 23, 25, 26, 27, 29, 30, 31 |
 | 0 | 65 |
 
-Ese set **no trae** Vol ±, Canal ±, OK, Salir, Input ni HDMI/Componente/AV directos: esos se encuentran con el escáner.
+En esta AOC el control original no tiene teclas aparte de volumen y canal: fuera del menú, ◀ ▶ son volumen y ▲ ▼ son canal. Por eso no aparecen al escanear (el escáner salta los códigos de las flechas).
+
+No se encontraron (escaneo completo 0–255): OK, Salir, HDMI 2, Componente y AV directos. Se llega a ellos con Input + flechas.
 
 El escáner se brinca por defecto los comandos que ya tienen botón (casilla "Saltar comandos que ya tienen botón"), así no apaga la tele a cada vuelta. Tip: Vol +/− y Canal +/− casi siempre son comandos consecutivos; ya que encuentres uno, prueba ±1.
 

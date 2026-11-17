@@ -99,14 +99,18 @@ class Config(context: Context) {
             "picture" to 3,
             "hdmi1" to 6,
             "input" to 8,
+            // En esta AOC las flechas hacen doble función: fuera del menú ◀▶ = volumen, ▲▼ = canal.
+            "vol_up" to 12,
+            "vol_down" to 16,
+            "ch_up" to 24,
+            "ch_down" to 28,
             "sleep" to 19,
             "wide" to 20,
             "1" to 21, "2" to 22, "3" to 23,
             "4" to 25, "5" to 26, "6" to 27,
             "7" to 29, "8" to 30, "9" to 31,
             "0" to 65,
-            // vol_up, vol_down, ch_up, ch_down, ok, exit, input, hdmi1/2, component, av:
-            // no vienen en el IRDB → encontrarlos con el escáner
+            // ok, exit, hdmi2, component, av: no encontrados (escaneo completo 0–255 en 0x00/0xBD)
         )
     }
 }
