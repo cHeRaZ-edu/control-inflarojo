@@ -51,6 +51,9 @@ NEC, address `0x00`, subaddress `0xBD` (189).
 | Info | 64 |
 | Canal anterior | 68 |
 | PC / VGA | 69 |
+| Sleep | 19 |
+| Formato | 20 |
+| Modo de imagen | 3 (encontrado con el escáner, no viene en IRDB) |
 | 1–9 | 21, 22, 23, 25, 26, 27, 29, 30, 31 |
 | 0 | 65 |
 

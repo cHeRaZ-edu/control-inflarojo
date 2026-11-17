@@ -96,6 +96,8 @@ class MainActivity : Activity() {
         root.addView(Ui.row(this, key("source", textSize = 16f), key("pc", textSize = 16f), key("hdmi1", textSize = 16f)))
         root.addView(Ui.row(this, key("hdmi2", textSize = 16f), key("component", textSize = 16f), key("av", textSize = 16f)))
         root.addView(gap())
+        root.addView(Ui.row(this, key("picture", textSize = 16f), key("wide", textSize = 16f), key("sleep", textSize = 16f)))
+        root.addView(gap())
         root.addView(Ui.row(this, key("1"), key("2"), key("3")))
         root.addView(Ui.row(this, key("4"), key("5"), key("6")))
         root.addView(Ui.row(this, key("7"), key("8"), key("9")))
