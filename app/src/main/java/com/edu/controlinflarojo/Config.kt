@@ -98,6 +98,7 @@ class Config(context: Context) {
             // Encontrados con el escáner en la LC42H163:
             "picture" to 3,
             "hdmi1" to 6,
+            "input" to 8,
             "sleep" to 19,
             "wide" to 20,
             "1" to 21, "2" to 22, "3" to 23,
