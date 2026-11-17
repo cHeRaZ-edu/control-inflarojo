@@ -95,7 +95,9 @@ class Config(context: Context) {
             "info" to 64,
             "prev" to 68,
             "pc" to 69,
-            "picture" to 3, // encontrado con el escáner en la LC42H163
+            // Encontrados con el escáner en la LC42H163:
+            "picture" to 3,
+            "hdmi1" to 6,
             "sleep" to 19,
             "wide" to 20,
             "1" to 21, "2" to 22, "3" to 23,

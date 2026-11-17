@@ -54,6 +54,7 @@ NEC, address `0x00`, subaddress `0xBD` (189).
 | Sleep | 19 |
 | Formato | 20 |
 | Modo de imagen | 3 (encontrado con el escáner, no viene en IRDB) |
+| HDMI 1 directo | 6 (encontrado con el escáner) |
 | 1–9 | 21, 22, 23, 25, 26, 27, 29, 30, 31 |
 | 0 | 65 |
 
