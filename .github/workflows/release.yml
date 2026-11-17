@@ -3,10 +3,16 @@ name: Release APK
 on:
   push:
     tags: ["v*"]
+  release:
+    types: [published] # crear el Release desde la web/app de GitHub también lo dispara
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:
