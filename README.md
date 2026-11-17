@@ -51,10 +51,13 @@ NEC, address `0x00`, subaddress `0xBD` (189).
 | Abajo | 28 |
 | Info | 64 |
 | Canal anterior | 68 |
+| PC / VGA | 69 |
 | 1–9 | 21, 22, 23, 25, 26, 27, 29, 30, 31 |
 | 0 | 65 |
 
-Ese set **no trae** Vol ±, Canal ±, OK ni Salir: esos se encuentran con el escáner.
+Ese set **no trae** Vol ±, Canal ±, OK, Salir, Input ni HDMI/Componente/AV directos: esos se encuentran con el escáner.
+
+El escáner se brinca por defecto los comandos que ya tienen botón (casilla "Saltar comandos que ya tienen botón"), así no apaga la tele a cada vuelta. Tip: Vol +/− y Canal +/− casi siempre son comandos consecutivos; ya que encuentres uno, prueba ±1.
 
 ## Cómo encontrar los códigos que faltan
 

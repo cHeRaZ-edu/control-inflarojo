@@ -21,9 +21,15 @@ data class TvButton(val key: String, val short: String, val name: String, val re
 
 object Buttons {
     val ALL = listOf(
-        TvButton("power", "⏻", "Encender / Apagar"),
-        TvButton("source", "Fuente", "Fuente (TV/Video/HDMI)"),
+        TvButton("power", "ON/OFF", "Encender / Apagar"),
+        TvButton("input", "Input", "Input (menú de entradas)"),
         TvButton("mute", "Mute", "Silencio"),
+        TvButton("source", "TV/AV", "TV / Video"),
+        TvButton("pc", "PC", "PC / VGA"),
+        TvButton("hdmi1", "HDMI 1", "HDMI 1 directo"),
+        TvButton("hdmi2", "HDMI 2", "HDMI 2 directo"),
+        TvButton("component", "Comp", "Componente directo"),
+        TvButton("av", "AV", "AV directo"),
         TvButton("vol_up", "Vol +", "Subir volumen", repeat = true),
         TvButton("vol_down", "Vol −", "Bajar volumen", repeat = true),
         TvButton("ch_up", "Canal +", "Subir canal", repeat = true),
@@ -85,11 +91,13 @@ class Config(context: Context) {
             "down" to 28,
             "info" to 64,
             "prev" to 68,
+            "pc" to 69,
             "1" to 21, "2" to 22, "3" to 23,
             "4" to 25, "5" to 26, "6" to 27,
             "7" to 29, "8" to 30, "9" to 31,
             "0" to 65,
-            // vol_up, vol_down, ch_up, ch_down, ok, exit: no vienen en el IRDB → encontrarlos con el escáner
+            // vol_up, vol_down, ch_up, ch_down, ok, exit, input, hdmi1/2, component, av:
+            // no vienen en el IRDB → encontrarlos con el escáner
         )
     }
 }

@@ -41,6 +41,7 @@ class ScannerActivity : Activity() {
     private var standard = false
     private var varyCommand = true
     private var intervalMs = 1500
+    private var skipKnown = true
 
     private var running = false
     private var stepsLeft = 0
@@ -104,6 +105,7 @@ class ScannerActivity : Activity() {
         standard = config.getBool("scan_std", false)
         varyCommand = config.getBool("scan_vary_cmd", true)
         intervalMs = config.getInt("scan_interval", 1500)
+        skipKnown = config.getBool("scan_skip_known", true)
     }
 
     private fun saveState() {
@@ -113,7 +115,12 @@ class ScannerActivity : Activity() {
         config.putBool("scan_std", standard)
         config.putBool("scan_vary_cmd", varyCommand)
         config.putInt("scan_interval", intervalMs)
+        config.putBool("scan_skip_known", skipKnown)
     }
+
+    /** Botones que ya tienen asignado exactamente este código. */
+    private fun buttonsWith(code: IrCode): List<TvButton> =
+        Buttons.ALL.filter { config.code(it.key) == code }
 
     private fun currentCode(): IrCode =
         IrCode(address, if (standard) Nec.standardSub(address) else sub, command)
@@ -121,8 +128,16 @@ class ScannerActivity : Activity() {
     // ---------- acciones ----------
 
     private fun step(delta: Int) {
-        if (varyCommand) command = (command + delta).mod(256)
-        else address = (address + delta).mod(256)
+        if (varyCommand) {
+            // Al recorrer comandos se brinca los que ya tienen botón (evita apagar la tele o abrir el menú cada vuelta).
+            var tries = 0
+            do {
+                command = (command + delta).mod(256)
+                tries++
+            } while (skipKnown && tries < 256 && buttonsWith(currentCode()).isNotEmpty())
+        } else {
+            address = (address + delta).mod(256)
+        }
         refreshInputs()
         sendCurrent()
     }
@@ -164,6 +179,7 @@ class ScannerActivity : Activity() {
                 config.setCode(b.key, code)
                 toast("${b.name} = $code")
                 refreshMapping()
+                refreshStatus()
             }
             .setNegativeButton("Cancelar", null)
             .show()
@@ -242,6 +258,12 @@ class ScannerActivity : Activity() {
             }
         }
         root.addView(stdCheck)
+        root.addView(CheckBox(ctx).apply {
+            text = "Saltar comandos que ya tienen botón"
+            setTextColor(Ui.TEXT)
+            isChecked = skipKnown
+            setOnCheckedChangeListener { _, checked -> skipKnown = checked }
+        })
         root.addView(Ui.row(ctx, field("Intervalo auto (ms)", intervalInput), Ui.spacer(ctx)))
 
         // Lo que se está mandando
@@ -304,7 +326,10 @@ class ScannerActivity : Activity() {
     }
 
     private fun refreshStatus() {
-        current.text = currentCode().toString()
+        val code = currentCode()
+        val owners = buttonsWith(code)
+        current.text = if (owners.isEmpty()) code.toString()
+        else "$code\n= ${owners.joinToString { it.name }}"
         historyText.text = if (history.isEmpty()) "Aún no se ha enviado nada"
         else "Enviados: " + history.joinToString("\n")
     }

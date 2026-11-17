@@ -84,7 +84,7 @@ class MainActivity : Activity() {
             })
         }
 
-        root.addView(Ui.row(this, key("power", Ui.POWER, 26f), key("source"), key("mute")))
+        root.addView(Ui.row(this, key("power", Ui.POWER, 18f), key("input", Ui.KEY_ACCENT), key("mute")))
         root.addView(gap())
         root.addView(Ui.row(this, key("vol_up", Ui.KEY_ACCENT, 22f, 76), key("ch_up", Ui.KEY_ACCENT, 22f, 76)))
         root.addView(Ui.row(this, key("vol_down", Ui.KEY_ACCENT, 22f, 76), key("ch_down", Ui.KEY_ACCENT, 22f, 76)))
@@ -92,6 +92,9 @@ class MainActivity : Activity() {
         root.addView(Ui.row(this, key("menu"), key("up"), key("exit")))
         root.addView(Ui.row(this, key("left"), key("ok", Ui.KEY_ACCENT), key("right")))
         root.addView(Ui.row(this, key("info"), key("down"), key("prev")))
+        root.addView(gap())
+        root.addView(Ui.row(this, key("source", textSize = 16f), key("pc", textSize = 16f), key("hdmi1", textSize = 16f)))
+        root.addView(Ui.row(this, key("hdmi2", textSize = 16f), key("component", textSize = 16f), key("av", textSize = 16f)))
         root.addView(gap())
         root.addView(Ui.row(this, key("1"), key("2"), key("3")))
         root.addView(Ui.row(this, key("4"), key("5"), key("6")))
